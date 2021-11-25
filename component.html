@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .alert {
+      background-color: #fcc;
+      padding: 10px;
+      border: 1px solid #f33;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <box>入力されてません</box>
+    <box>入力されてません</box>
+    <box>入力されてません</box>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    Vue.component('box', {
+      template: `
+      <div class="alert" v-on:click="caution">
+        <strong>Error!</strong>
+        <slot></slot>
+      </div>
+        `,
+        methods: {
+          caution: function() {
+            alert("クリックされましたわよ");
+          }
+        },
+    });
+
+    const app = new Vue({
+      el: "#app"
+    })
+  </script>
+</body>
+</html>
